@@ -220,7 +220,7 @@ useEffect(() => {
        
 
        {/* color Cool Grey area */}
-       <div className='bg-white add_style w-full overflow-hidden p-5'>
+       <div className='bg-black add_style w-full overflow-hidden p-5'>
         <div className='sm:container  sm:mx-auto  sm:px-5 xl:px-10  w-full pt-24 sm:pt-40 relative overflow-hidden'>
        
      
