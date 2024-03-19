@@ -294,15 +294,54 @@ useEffect(() => {
     </div>
     {/* Item 2 */}
     <div>
+      {/* icon */}
+      <IoDocumentTextOutline className='text-5xl' />
+      {/* text */}
+      <div>
+        {/* Title */}
+        <div className='font-semibold text-2xl '>
+              We do Not Require Extra Documents
+        </div>
+        {/* Content */}
+        <div>
 
+        </div>
+
+      </div>
     </div>
     {/* Item 3*/}
     <div>
+      {/* icon */}
+      <IoDocumentTextOutline className='text-5xl' />
+      {/* text */}
+      <div>
+        {/* Title */}
+        <div className='font-semibold text-2xl '>
+              We do Not Require Extra Documents
+        </div>
+        {/* Content */}
+        <div>
 
+        </div>
+
+      </div>
     </div>
     {/* Item 4*/}
     <div>
+      {/* icon */}
+      <IoDocumentTextOutline className='text-5xl' />
+      {/* text */}
+      <div>
+        {/* Title */}
+        <div className='font-semibold text-2xl '>
+              We do Not Require Extra Documents
+        </div>
+        {/* Content */}
+        <div>
 
+        </div>
+
+      </div>
     </div>
     {/* Item 5 */}
     <div>
@@ -310,6 +349,20 @@ useEffect(() => {
     </div>
     {/* Item 6 */}
     <div>
+            {/* icon */}
+            <IoDocumentTextOutline className='text-5xl' />
+      {/* text */}
+      <div>
+        {/* Title */}
+        <div className='font-semibold text-2xl '>
+              We do Not Require Extra Documents
+        </div>
+        {/* Content */}
+        <div>
+
+        </div>
+
+      </div>
     </div>
 
         </div>
