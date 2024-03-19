@@ -7,8 +7,9 @@ import Horizontal_nav from '../components/navbar/horizontal_nav'
 import {BsStarFill,BsKeyFill,BsKey,BsGraphUp,BsImage, BsPenFill, BsPen, BsPalette,BsArrowDownRight,BsRocket,BsCheck, BsClock, BsOption, BsPerson} from "react-icons/bs"
 
 import {GiProfit} from  "react-icons/gi"
-
+import { FaArrowRight } from "react-icons/fa";
 import Image from 'next/image'
+import { IoDocumentTextOutline } from "react-icons/io5";
 // // Import Swiper React components
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // // Import Swiper styles
@@ -193,11 +194,7 @@ useEffect(() => {
             {/* title */}
         <title>Swiftfund</title>
         {/* meta tags */}
-        <meta name="description" content=" Trade or Exchange all your cryptocurrencies and giftcards  with us.
-         We are driven by the belief that everyone should have the opportunity to access, profit from, and benefit from contemporary digital assets, especially those who are most in need.
-         We accept a wide range of gift card brands, including popular ones like Amazon, iTunes, and Google Play. Check our list for the full selection.
-         We support a variety of cryptocurrencies, including Bitcoin, Ethereum, Litecoin, and more. You can choose your preferred cryptocurrency during the transaction.
-         " />
+        <meta name="description" content=" Welcome to Swiftfund, where your financial goals meet possibility! Get ready to embark on a seamless journey towards your dreams with our hassle-free lending solutions. Whether you're looking to fund your next big project, consolidate debt, or seize a lucrative opportunity, we've got you covered. Explore our range of flexible loan options tailored to fit your needs, backed by competitive rates and expert guidance. Say goodbye to financial barriers and hello to a brighter future with SwiftFund. Start your application today and let's make your aspirations a reality!" />
 
         {/* header links */}
         <link rel="icon" href="./static/logo.ico" />
@@ -220,90 +217,102 @@ useEffect(() => {
        
 
        {/* color Cool Grey area */}
-       <div className='bg-black add_style w-full overflow-hidden p-5'>
+       <div className='bg-sky-700 add_style w-full overflow-hidden p-5 py-12 text-white'>
         <div className='sm:container  sm:mx-auto  sm:px-5 xl:px-10  w-full pt-24 sm:pt-40 relative overflow-hidden'>
        
      
           {/* intro */}
   
-          <div className='text-center overflow-hidden'>
-         <div className='flex flex-col sm:flex-row sm:justify-between items-center'>
-          <div>
+          <div className=' overflow-hidden'>
+         <div className='flex flex-col md:flex-row gap-24 lg:gap-12 items-center justify-center'>
+          <div className='gap-6 flex flex-col basis-5/6'>
             {/* showcase Title */}
-            <div className='font-bold text-black text-3xl sm:text-4xl'>
-              <span className='text-yellow-600'>Trade All Your</span> Cryptocurrencies & Giftcard With Us
+            <div className='font-bold  text-[2.4rem] sm:text-[3rem] leading-[1.4]'>
+            Unlock Your Financial Potential: <span className='text-sky-300'>Explore Our Loan Solutions Today</span> 
             </div>
             {/* showcase content */}
-            <div className='text-slate-800 text-lg text-lead mt-3'>
-              We are driven by the belief that everyone should have the opportunity to access, profit from, and benefit from contemporary digital assets, especially those who are most in need.
+            <div className='text-slate-800 text-md mt-3 text-white'>
+            Offering Personal Loans, Business Loans and asset finance to individuals businesses throughout the world.
             </div>
             
-            <div className='hover:bg-yellow-600 hover:text-white p-3 text-center text-lg sm:text-xl font-semibold  text-yellow-600 border border-lg border-yellow-600 rounded rounded-lg mt-5 ' style={{
-                transition:'all ease-in-out 0.5s',
+            <div className='bg-green-500 w-56 p-5 cursor-pointer text-center flex items-center justify-center gap-2 text-lg sm:text-xl font-semibold rounded rounded-lg mt-5 ' style={{
+                transition:'all ease-in-out 0.5s ',
               }} onClick={(e)=> router.push("Trade")}>
                
-      Trade Now 
+    Take a Loan <span><FaArrowRight /></span>
     </div>
    
      
     
           </div>
-
-          {/* Showcase Image */}
-          <div className='mt-12 sm:mt-0 '>
-            <Image src="/static/display.png" alt="display" className='' height={1200} width={1700} />
-          </div>
-         </div>
+        <div className='w-full flex items-center justify-center basis-full'>
+          <img src={"/static/pic1.webp" } alt='display_pic' className='max-w-100 h-64 lg:h-96 '/>
+        </div>
       
-           {/* section 2 */}
-  
-  
-           <div className=' leading-loose min-h-screen flex flex-col items-center justify-center pb-8 overflow-hidden'>
-          {/* header */}
-          <div className=' text-2xl text-center font-semibold pb-12 text-black'>
-           And Why Should You Choose CryptoCenter?
-          </div>
-  
-             <div className=''> 
-             <div className='text-white w-full grid sm:grid-cols-2 lg:grid-cols-3 lg:grid-cols-3 justify-center items-center gap-12 overflow-hidden pt-5'>
-      {services.map((ele,index) => (<AnimationOnScroll animateIn=" animate__fadeInUp "     className='flex  gap-5 items-start hover:border-gray-600  border border-gray-500    p-5 rounded rounded-lg' key={index}>
-              {/* icon */}
-              <div key={index} className=' text-2xl '>
-            
-                <div className=' text-slate-800 relative flex items-center justify-center '>
-                  
-                 <span className='z-20 text-yellow-600'>{ele.icon}</span> 
-                </div>
-              </div>
-              {/* content and title */}
-              <div className='flex flex-col items-start justify-center'>
-                {/* title */}
-              <div key={index} className='font-semibold text-start text-xl text-black'>
-                {ele.title}
-              </div>
-              {/* content */}
-              </div>
-          </AnimationOnScroll>) )}
-</div>
-  </div> 
-  </div>    
+         </div>
+   
   </div>     
        </div>
        </div>
        
-   
+         
 {/* Section white area*/}
-{/* section 1 */}
-      <div className='bg-white w-full pt-16 relative text-slate-800 p-5'>
+{/* section 2 */}
+      <div className='bg-white w-full pt-16 relative text-slate-800 p-5 py-12'>
 
+
+      <div className='text-3xl text-sky-900 text-center font-semibold'>
+        Why is it Worth Taking a Loan From us?
+      </div>
         <div className="sm:container sm:mx-auto sm:px-5 xl:px-10 overflow-hidden flex flex-col items-center justify-center w-full" > 
-          {/* Intro Text */}
-          <div className='text-2xl text-black font-semibold text-center w-full font-semibold mt-8'>Let&apos;s Save you Time and Money</div>
-   <p className='text-slate-600 text-center  py-3 pb-12 text-sm'>
-   Our rates and prices are regularly updated to stay correct according to market trends because the aim is not to only make profit but to ensure every customer gets the proper and satisfactory value for any transaction made.
-   </p>
-
+          {/* Supplementary Text */}
+          <div className='p-3 text-slate-400'>On the other hand, we denounce with righteous.
+</div>
         </div>  
+
+        {/* boxes of different colors */}
+        {/* A Grid wrapper */}
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 py-12'>
+
+    {/* Item 1 */}
+    <div className='flex flex-col items-center justify-center text-center p-5 gap-3 bg-green-600 text-white rounded rounded-xl'>
+      {/* icon */}
+      <IoDocumentTextOutline className='text-5xl' />
+      {/* text */}
+      <div>
+        {/* Title */}
+        <div className='font-semibold text-2xl '>
+              We do Not Require Extra Documents
+        </div>
+        {/* Content */}
+        <div>
+
+        </div>
+
+      </div>
+      
+    </div>
+    {/* Item 2 */}
+    <div>
+
+    </div>
+    {/* Item 3*/}
+    <div>
+
+    </div>
+    {/* Item 4*/}
+    <div>
+
+    </div>
+    {/* Item 5 */}
+    <div>
+
+    </div>
+    {/* Item 6 */}
+    <div>
+    </div>
+
+        </div>
       </div>
 
       {/*Section gray area  */}

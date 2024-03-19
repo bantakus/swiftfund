@@ -23,7 +23,7 @@ setnav(false)
 const router = useRouter();
    
   return (
-   <div className={` bg-white shadow  fixed w-full z-50  backdrop-blur-xl  p-2 px-5`}>
+   <div className={` bg-white shadow  fixed w-full z-50  backdrop-blur-xl  p-2 px-3`}>
     <div className={`  container mx-auto flex justify-between items-center py-2 ${className} xl:px-10 `}>
 
       {/* nav and brand logo */}
