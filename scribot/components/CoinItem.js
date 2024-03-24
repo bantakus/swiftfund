@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function CoinItem (props) {
     return (
-        <div className={'flex items-center justify-between gap-8 my-5 bg-[#171717] rounded rounded-lg p-5 border border-[#525252] w-full '} >
+        <div className={'flex items-center justify-between gap-8 my-5 bg-white rounded rounded-lg p-5 border border-[#525252] '} >
             <p>{props.coins.market_cap_rank}</p>
             <div className="img-symbol">
                 <img src={props.coins.image} />

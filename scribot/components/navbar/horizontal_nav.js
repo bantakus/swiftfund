@@ -11,9 +11,15 @@ import Link from "next/link"
 
 // This navigation bar is for the landing page of the app
 
-function Horizontal_nav({className,bgColor,brandSize,textColor,activated}){
+function Horizontal_nav({activated}){
     
-  const [nav,setnav] = useState(false)
+  const [nav,setnav] = useState(false);
+  const [show,setShow] = useState(false);
+
+  function toggle_nav(){
+    return setShow(!show);
+
+  }
 function open(){
 setnav(true)
 }
@@ -23,103 +29,72 @@ setnav(false)
 const router = useRouter();
    
   return (
-   <div className={` bg-white shadow  fixed w-full z-50  backdrop-blur-xl  p-2 px-3`}>
-    <div className={`  container mx-auto flex justify-between items-center py-2 ${className} xl:px-10 `}>
-
-      {/* nav and brand logo */}
-      <div className={`flex
-        items-center justify-between w-full`}>
-
- {/* Brand */}
-  <div className={`font-bold ${brandSize} h-6 w-full `}>
- {/* Logo */}
- <div className={`  p-2 text-white  h-6 w-full flex items-center  lg:text-xl relative`}>
- <Image src={"/static/logo.png"} alt={"logo"} width={50} height={50} /> 
- 
- </div>
-</div>
-
-{/* navbar */}
-<div className="gap-10 text-slate-300 items-center hidden lg:flex text-white">
-
-    <div>
-        <div className={`${activated === "home" && "text-yellow-400 font-semibold "} hover:text-yellow-400 cursor-pointer`}  style={{
-                boxShadow:"0.02rem 0.02rem 5rem rgba(255, 0, 255, 0.2)",
-                transition:'all ease-in-out 0.5s'
-              }} onClick={e => router.replace("/")}>Home</div>
-    </div>
-   
-  
-    
-    <div>
-        <div className= {`${activated === "pricing" && "text-yellow-400 font-semibold"} hover:text-yellow-400 cursor-pointer`}  style={{
-                boxShadow:"0.02rem 0.02rem 5rem rgba(255, 0, 255, 0.2)",
-                transition:'all ease-in-out 0.5s'
-              }} onClick={e => router.replace("QMS")}>QMS</div>
-    </div>
-    <div>
-        <a href="tel:+2347036778009" className= {`${activated === "contact" && "text-yellow-400 font-semibold"} hover:text-yellow-400 cursor-pointer`}  style={{
-                boxShadow:"0.02rem 0.02rem 5rem rgba(255, 0, 255, 0.2)",
-                transition:'all ease-in-out 0.5s'
-              }}>Contact</a>
-    </div>
-   
-   
-    <div className="p-2 px-4 border border-yellow-400 text-yellow-400 rounded rounded-lg hover:bg-yellow-400 hover:text-slate-900 font-semibold w-40 text-center cursor-pointer" style={{
-            transition:'all ease-in-out 0.5s'
-          }}>
-        <div  href="/Trade" className= {`${activated === "trade" && "text-yellow-400 font-semibold"}`} onClick={e => router.replace("Trade")} >Trade</div>
-    </div>
-    
-</div>
-{/* small screen */}
-<div className="lg:hidden relative ">
-  <div className="btn p-2  rounded  cursor-pointer text-slate-900" style={{
-                boxShadow:"0.02rem 0.02rem 5rem rgba(255, 0, 255, 0.2)",
-                transition:'all ease-in-out 0.5s'
-              }} onClick={()=>open()}>
-    <RxHamburgerMenu className="text-2xl " />
-  </div>
-
-  </div>
-   {/* nav bar */}
-   <div className={`text-slate-300  top-0 absolute right-0 w-full h-screen text-2xl py-3 bg-gray-800 font-semibold  lg:hidden  ${nav ? "flex flex-col items-start  pt-24" :"hidden"}`}>
-<div className="fixed top-5 right-2  p-1 text-md rounded btn cursor-pointer border rounded border-gray-500 hover:bg-gray-900" onClick={()=>close()}>
-  <GiCancel  />
-</div>
-<div className="flex items-center justify-start w-full  border-slate-700 p-5 ">
-    <Link href="/" className={`${activated === "home" && "text-yellow-400 font-semibold text-center "} hover:text-yellow-400 `}  style={{
-            transition:'all ease-in-out 0.5s'
-          }}>Home</Link>
-</div>
-
-
-<div className="flex items-center justify-start w-full  border-slate-700 p-5 ">
-    <Link href="/QMS" className= {`${activated === "pricing" && "text-yellow-400 font-semibold text-center"} hover:text-yellow-400`}  style={{
-            transition:'all ease-in-out 0.5s'
-          }}>QMS</Link>
-</div>
-<div className="flex items-center justify-start w-full  border-slate-700 p-5 ">
-    <a href="tel:+2347036778009" className= {`${activated === "contact" && "text-yellow-400 font-semibold text-center"} hover:text-yellow-400`}  style={{
-            transition:'all ease-in-out 0.5s'
-          }}>Contact</a>
-</div>
-
-<div className="p-2 bg-yellow-500 text-gray-800 rounded rounded-lg  font-semibold text-center border-slate-700 p-3 px-10 mx-4" >
-    <Link href="/Trade" className= {``} >Trade</Link>
-</div>
-<div className=' text-center p-5 mt-24 text-sm'>
-    &copy;2023 - CryptoCentre
+   <nav class="bg-white">
+   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+     <div class="relative flex h-16 items-center justify-between">
+       <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        
+         <button type="button" onClick={()=>toggle_nav()} class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+           <span class="absolute -inset-0.5"></span>
+           <span class="sr-only">Open main menu</span>
+         
+           <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+           </svg>
+       
+           <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+           </svg>
+         </button>
+       </div>
+       <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+         <div class="flex flex-shrink-0 items-center">
+           <img class="h-8 w-auto" src="/static/logo.png" alt="Swiftfund" />
+         </div>
+         <div class="hidden sm:ml-6 sm:block">
+           <div class="flex space-x-4">
+            
+             <Link href="/" class={`${ activated === "home"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`} aria-current="page">Home</Link>
+             <Link href="/about" class={`${ activated === "about"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>About</Link>
+             <Link href="#faqs" class={`${ activated === "faqs"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>FAQS</Link>
+             <Link href="/services" class={`${ activated === "services"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>Services</Link>
+             <Link href="" class={`${ activated === "blog"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>Blog</Link>
+             <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>Contact</Link>
+             {/* <Link href="/calculator" class={`${ activated === "calculator"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>Loan Calculator</Link> */}
+             <Link href="/login" class={`text-gray-900 hover:bg-sky-100 hover:text-slate-900 rounded-md px-3 py-2 text-sm font-medium"`}>Login</Link>
+           </div>
+         </div>
+       </div>
+       <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+         <div class="relative ml-3">
+           <div className="flex gap-3 items-center justify-center">
+           <Link href="signup" class="bg-sky-500 text-white rounded-md px-8 py-3 text-sm font-medium" aria-current="page">SignUp</Link>
+           {/* <a href="#" class="text-slate-900 hover:bg-gray-100 rounded-md px-8 py-3 text-sm font-medium" aria-current="page">LogIn</a> */}
+           </div>
+         </div>
+       </div>
+     </div>
    </div>
-</div>
+ 
 
-</div>
- 
-  </div>
-  
- 
+ {/* The mobile view */}
    
-    </div>
+   <div class={`sm:hidden ${show? "sm:flex flex-col":"sm:hidden hidden"}`} id="mobile-menu">
+     <div class="space-y-1 px-2 pb-3 pt-2">
+    
+     
+     <Link href="/" class={`${ activated === "home"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  block rounded-md px-3 py-2 text-base font-medium`} aria-current="page">Home</Link>
+      <Link href="/about" class={`${ activated === "about"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>About</Link>
+      <Link href="#faqs" class={`${ activated === "faqs"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>FAQS</Link>
+      <Link href="/services" class={`${ activated === "services"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Services</Link>
+      {/* <Link href="/calculator" class={`${ activated === "calculator"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Loan Calculator</Link> */}
+      <Link href="" class={`${ activated === "blog"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Blog</Link>
+      <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Contact</Link>
+      <Link href="/login" class="text-gray-900 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium">Login</Link>
+     </div>
+   </div>
+ </nav>
+ 
   )
 }
 

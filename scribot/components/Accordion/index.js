@@ -32,10 +32,10 @@ function open_accordion(ind) {
 }
 
   return (
-    <div className='bg-[#171717] p-5 rounded rounded-lg'>
+    <div className='bg-slate-200 mx-5 md:mx-36 lg:mx-96 p-5 px-8 8  rounded rounded-lg'>
       {faqsState && faqsState.map((ele,ind)=>
  (<Collapsible key={ind} trigger={
-  <div className='flex justify-between items-center border-b border-b-gray-600 p-5 w-full font-semibold '>
+  <div className='flex justify-between items-center  p-5 w-full font-semibold '>
        <div className=''> 
     {ele.question}
   </div>
@@ -46,7 +46,7 @@ function open_accordion(ind) {
 
 
  } className=' w-full' onClose={()=>close_accordion(ind)} onOpen={()=>open_accordion(ind)}>
-<div className='text-gray-300 text-sm p-5'>
+<div className='text-gray-700 text-sm p-5'>
 {ele.answer}
 </div>
 </Collapsible>
