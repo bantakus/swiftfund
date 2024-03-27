@@ -10,6 +10,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 function Signup() {
     
+  const router = useRouter()
   const [input,setInput] = useState({email:"",password:"",checkpassword:""});
   const [ischecked,setChecked] = useState(false);
   const [emailLegit,setEmailLegit] = useState(null);
@@ -18,6 +19,7 @@ function Signup() {
   const [isPasswordStrong,setIsPasswordStrong] = useState(null);
   const [visible, setVisible] = useState(false);
   const [visible2, setVisible2] = useState(false);
+  const [error,setError] = useState("");
 
 const handleChecked = (e)=>{
     setChecked(e.target.checked)
@@ -111,10 +113,16 @@ function handleSubmit(e){
     if(input.email && emailLegit &&input.password && input.checkpassword && passwordMatch && isPasswordStrong&& ischecked){
     axios.post(`${baseURL}/users/register`,{email:input.email,password:input.password}).then(res =>{
         let data = res.data;
+        Cookies.set('__id',data._id,{expires:7})
         Cookies.set('token',data.token,{expires:7})
-        console.log(data);
+       
+        router.replace("/user/loan/apply")
+        alert("Account Created Successfully")
         }
-        ).catch(err => console.log(err))
+        ).catch(err =>  {
+          setError(err.message)
+          console.log(err)
+        })
     }
 
 };
@@ -153,6 +161,7 @@ function handleSubmit(e){
                  Register
               </h1>
               <form className="space-y-4 md:space-y-6 "onSubmit={handleSubmit} action="#">
+              <div className='text-red-500'> {error && error } </div>
                   <div>
                       <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email: {emailLegit === false && <span className='text-red-500 text-sm px-1'>Invalid Email format !</span>}</label>
                       <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="name@email.com" required="true" value={input.email} onChange={handleChange}/>

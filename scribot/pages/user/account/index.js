@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image';
 import axios from 'axios';
 import Link from 'next/link';
@@ -6,27 +6,53 @@ import Head from 'next/head';
 import { BsCardList, BsCurrencyBitcoin, BsKey, BsNewspaper, BsPaperclip, BsPerson, BsSave, BsSend, BsWallet } from 'react-icons/bs';
 import { IoAdd, IoLogOut, IoSettings } from 'react-icons/io5';
 import { FaDollarSign, FaMoneyBill } from 'react-icons/fa';
+import { useRouter } from 'next/router';
+import { AppContext } from '@/components/context';
+import Cookies from 'js-cookie';
+import { baseURL } from '@/pages/api';
 
 
 
-function Dashboard() {
+function Account() {
     const [coins, setCoins] = useState([]);
     const [show,setShow] = useState(false);
     const [activated,setActivated] = useState("about");
+    const {user,setUser} = useContext(AppContext);
+    const [refresh,setRefresh] = useState(0);
 
+
+    const router = useRouter()
   function toggle_nav(){
     return setShow(!show);
 
   }
-const api = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
 
 useEffect(() => {
-  axios.get(api).then((response) => {
-    setCoins(response.data)
-  }).catch((error) => {
-    console.log(error)
-  })
+  
+   const id = Cookies.get("__id");
+   const token = Cookies.get("token")
+     if(id && token){
+   axios.get(`${baseURL}/users/`+id,{headers:{Authorizatioin:"Bearer "+token}}).then(res => {
+      console.log(res.data)  
+      setUser(res.data)
+      
+      }).catch(err => console.log(err));
+     }
+     else{
+       router.replace("/auth/login")
+     }
+
 }, []);
+
+function logout(){
+
+   alert("Logged Out Successfully")
+   Cookies.remove("__id");
+   Cookies.remove("token");
+   setRefresh(prev => prev + 1)
+   router.replace("/auth/login")
+
+}
 
   return (
     <div className='bg-white min-h-screen overflow-hidden'>
@@ -84,7 +110,7 @@ useEffect(() => {
       <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Products</Link>
       <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Privacy & Security</Link>
       <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Settings</Link>
-      <Link href="" class="text-red-500 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium">Log out</Link>
+      <Link href="" class="text-red-500 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium" onClick={()=>logout()}>Log out</Link>
      </div>
    </div>
 </nav>
@@ -159,7 +185,7 @@ useEffect(() => {
          <li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
                <IoLogOut className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900  text-xl" />
-               <span className="flex-1 ms-3 whitespace-nowrap text-red-500 dark:text-red-400">Log out</span>
+               <span className="flex-1 ms-3 whitespace-nowrap text-red-500 dark:text-red-400" onClick={()=>logout()}>Log out</span>
             </a>
          </li>
       </ul>
@@ -177,7 +203,7 @@ useEffect(() => {
                 </div>
                 <div className='text-slate-600 flex flex-col justify-start items-start'>
                      <div className='font-semibold'>
-                  Hi,  John  
+                  Hi,  {user.user?user.user.firstname:"User"} 
                 </div>
                 <div className='font-semibold underline cursor-pointer text-sm'>
                     Account ID: 72763112736
@@ -195,7 +221,7 @@ useEffect(() => {
             Full Name
         </div>
         <div className='text-slate-400'>
-            John Doe {">"}
+        {user.user&&user.user.firstname} {user.user&&user.user.lastname}  {">"}
         </div>
         </div>
         {/*  */}
@@ -204,7 +230,7 @@ useEffect(() => {
             Email
         </div>
         <div className='text-slate-400'>
-        John Doe@email.com  {">"}
+        {user.user&&user.user.email}   {">"}
         </div>
         </div>
         {/*  */}
@@ -213,25 +239,17 @@ useEffect(() => {
             Phone number
         </div>
         <div className='text-slate-400'>
-        +187645643  {">"}
+        {user.user&&user.user.phone_number}  {">"}
         </div>
         </div>
-        {/*  */}
-        <div className='flex justify-between w-full py-1'>
-        <div>
-            Nick Name
-        </div>
-        <di className='text-slate-400'v>
-        Jonny  {">"}
-        </di>
-        </div>
+       
         {/*  */}
         <div className='flex justify-between w-full py-1'>
         <div>
             Gender 
         </div>
         <div className='text-slate-400'>
-            Male {">"}
+        {user.user&&user.user.gender} {">"}
         </div>
         </div>
         {/*  */}
@@ -240,7 +258,7 @@ useEffect(() => {
             Date of Birth
         </div>
         <div className='text-slate-400'>
-            14/5/2001 {">"}
+        {user.user&&user.user.dob} {">"}
         </div>
         </div>
         {/*  */}
@@ -249,7 +267,7 @@ useEffect(() => {
            Address 
         </div>
         <div className='text-slate-400'>
-            Coconut street {">"}
+        {user.user&&user.user.state}, {user.user&&user.user.city} {">"}
         </div>
         </div>
       </div>
@@ -303,4 +321,4 @@ useEffect(() => {
   )
 }
 
-export default Dashboard;
+export default Account;

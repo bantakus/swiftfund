@@ -5,10 +5,10 @@ import { protect } from "../middleware/auth.js";
 const router = express.Router();
 
 router.get("/",getAllUsers);
-router.get("/:id",protect,getUser);
+router.get("/:id",getUser);
 router.post("/register",register)
 router.post("/login",login)
-router.put('/user/update/:id',updateProfile);
+router.put('/update/:id', updateProfile);
 router.delete("/user/delete/:id",deleteUser);
 
 export default router;

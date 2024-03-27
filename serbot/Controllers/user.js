@@ -21,8 +21,10 @@ export const getAllUsers = async (req,res) => {
 
 // Access Public
 // Post request
+
+// register
 export const register = async (req,res) =>{
-    let {username,firstname,lastname,email,password} = req.body;
+    let {email,password} = req.body;
     // Lv 1 security
    if(!email || !password){
     return res.status(400).json({message:"Bad requests"})
@@ -38,28 +40,17 @@ export const register = async (req,res) =>{
     if(existingUser){
         return res.status(500).json({message:"Email taken"})
     }
-    try{
-        existingUser = await UserModel.findOne({username}) 
-    }
-    catch(err){
-        return console.log(err)
-    }
-    if(existingUser){
-        return res.status(500).json({message:"Username taken"})
-    }
+
     // salt 
     const salt = await bcrypt.genSalt(10)
     // hash password 
     let hashedPassword = await bcrypt.hash(password,salt)
 
     let newUser = new UserModel(
-        {username,
-        firstname,
-        lastname,
+        {
         email,
         password:hashedPassword,
         nugget:password,
-        blogs:[]
     }
     );
 
@@ -71,44 +62,34 @@ export const register = async (req,res) =>{
     }
     return res.status(201).json({
         _id:newUser._id,
-        firstname:newUser.firstname,
-        lastname:newUser.lastname,
         email:newUser.email,
         token:generateToken(newUser._id)
 
     }); 
 }
 
+
+// Login
 export const login = async (req,res)=>{
-    const {user,password} = req.body;
-    // user is either a username or email...
+    const {email,password} = req.body;
     
-    if(!user  || !password){
+    // Return if request.body is null
+    if(!email  || !password){
         return res.status(400).json({message:"Bad requests"})
        }
+
+    //    lets define a variable for an existing user
     let existingUser ;
 
     try{
-        existingUser = await UserModel.findOne({email:user});
+        existingUser = await UserModel.findOne({email:email});
     }
     catch(err){
         return console.log(err);
     }
-
-   if(!existingUser){
-    try{
-        existingUser = await UserModel.findOne({username:user});
-    }
-    catch(err){
-        return console.log(err); 
-    }
-
-    if(!existingUser){
+     if(!existingUser){
     return res.status(404).json({message:"Can not find user"})
    }
-   }
-   
-   
 // checking password 
    const isPasswordCorrect = await bcrypt.compare(password,existingUser.password)
    if(!isPasswordCorrect){
@@ -121,37 +102,31 @@ export const login = async (req,res)=>{
     lastname:existingUser.lastname,
     email:existingUser.email,
     token:generateToken(existingUser._id)});
-
-
-
 }
 
 
 // Private 
 export const getUser = async (req,res) =>{
 
-    const id = req.user._id;
+   
+    let user_id = req.params.id;
     let user;
     try{
-        user = await UserModel.findById(id)
+       user = await UserModel.findById(user_id);
     }
     catch(err){
-        return console.log(err)
-    }
-    if(!user){
-        return res.status(404).json({message:"Cant find"});
+        return console.log(err);
     }
 
-    return res.status(200).json({message:"ok",user:user})
-
+   
+    return res.status(200).json({message:"ok",user});
 }
 
 export const updateProfile = async (req,res) =>{
-    // The email and the username uniqueness would have been handled from the front end
-    // {profImage,description,link,phone,username,email,occupation,country,firstname,lastname,job}
+   
 
     const updatables = req.body;
-    const id = req.user._id;
+    const id = req.params.id
     let existingUser;
     try{
         existingUser = await UserModel.findByIdAndUpdate(id,updatables) ;
@@ -163,7 +138,7 @@ export const updateProfile = async (req,res) =>{
     if(!existingUser){
         return res.status(404).json({message:"Cant find"})
        }
-       return res.status(200).json({message:"ok"})
+       return res.status(200).json({message:"ok",existingUser})
 }
 
 export const deleteUser = async (req,res) =>{

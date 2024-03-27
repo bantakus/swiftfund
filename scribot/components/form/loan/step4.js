@@ -3,6 +3,8 @@ import ProgressBar from '@/components/progressBar/progress';
 import Resizer from "react-image-file-resizer";
 import { FaImages } from 'react-icons/fa';
 import { GiCancel } from 'react-icons/gi';
+import Cookies from 'js-cookie';
+import { baseURL } from '@/pages/api';
 
 function StepFour({forward,input,backward,setInput}) {
     
@@ -32,7 +34,7 @@ function closeReview(){
   const stepTwoRef = useRef(0);
 
   const isFilled = () => {
-    if(input.driver_licence_back[0] && input.driver_licence_front[0] && input.medicare_back[0] && input.medicare_front[0]){
+    if(input.driver_licence_back&&input.driver_licence_front&& input.medicare_front&& input.medicare_back){
       return true;
     }
     else{
@@ -57,7 +59,7 @@ function closeReview(){
 
 
       
-    },[changeCount]
+    },[changeCount,input]
   )
 // image resizer (outputs base64 as its default value)
 const resizeFile = (file) =>
@@ -130,6 +132,8 @@ const handleFileSelect = (e) =>{
       return ;
     }
   }
+
+  
 
   return (
     <div className='max-w-[40rem] z-[9999999] flex flex-col items-center justify-center mt-5 '>
@@ -245,7 +249,7 @@ const handleFileSelect = (e) =>{
 
 
  {/* button */}
-    <button className='p-3 mt-3 lg:display bg-slate-500  rounded w-96 text-center font-semibold  border border-slate-800 text-white animate__animated animate__pulse  ' ref={stepTwoRef} onClick={()=>{
+    <button className='p-3 mt-3 lg:display bg-slate-500  rounded w-96 text-center font-semibold  border border-slate-800 text-white hidden animate__animated animate__pulse  ' ref={stepTwoRef} onClick={()=>{
     input.firstname && input.lastname && forward()
     }}>
     Next

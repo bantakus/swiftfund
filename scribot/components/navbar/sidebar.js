@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Image from 'next/image';
 import axios from 'axios';
 import Link from 'next/link';
@@ -9,11 +9,18 @@ import { FaDollarSign, FaMoneyBill } from 'react-icons/fa';
 import CoinItem from '@/components/CoinItem';
 import { useRouter } from 'next/router';
 import ProgressBar from '@/components/widgets/progressBar';
+import { AppContext } from '@/components/context';
+import Cookies from 'js-cookie';
 
 function Sidebar() {
     const [coins, setCoins] = useState([]);
     const [show,setShow] = useState(false);
     const [activated,setActivated] = useState("home");
+    const {user,setUser} = useContext(AppContext);
+    const [refresh,setRefresh] = useState(0);
+
+
+
 
    const router = useRouter()
   function toggle_nav(){
@@ -30,6 +37,17 @@ useEffect(() => {
     console.log(error)
   })
 }, []);
+
+
+function logout(){
+
+   Cookies.remove("__id");
+   Cookies.remove("token");
+   alert("Logged Out Successfully")
+   setRefresh(prev => prev + 1)
+   router.replace("/auth/login")
+
+}
 
   return (
    
@@ -63,21 +81,21 @@ useEffect(() => {
         </div>
     </div>
   </div>
-  <div class={`sm:hidden ${show? "sm:flex flex-col":"sm:hidden hidden"}`} id="mobile-menu">
-     <div class="space-y-1 px-2 pb-3 pt-2">
+  <div className={`sm:hidden ${show? "sm:flex flex-col":"sm:hidden hidden"}`} id="mobile-menu">
+     <div className="space-y-1 px-2 pb-3 pt-2">
     
      
-     <Link href="/user/dashboard" class={`${ activated === "home"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  block rounded-md px-3 py-2 text-base font-medium`} aria-current="page">Dashboard</Link>
-      <Link href="/user/account" class={`${ activated === "about"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Account</Link>
-      <Link href="/user/loan" class={`${ activated === "faqs"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Loans</Link>
-      <Link href="/user/savings" class={`${ activated === "services"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Savings</Link>
-      <Link href="" class={`${ activated === ""? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Buy Crypto <span className="text-[0.7rem] text-sky-500 p-1 border border-sky-500 rounded rounded-full">Coming Soon</span></Link>
-      {/* <Link href="/calculator" class={`${ activated === "calculator"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Loan Calculator</Link> */}
-      <Link href="/user/activity" class={`${ activated === "blog"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Activity</Link>
-      <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Products</Link>
-      <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Privacy & Security</Link>
-      <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Settings</Link>
-      <Link href="" class="text-red-500 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium">Log out</Link>
+     <Link href="/user/dashboard" className={`${ activated === "home"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  block rounded-md px-3 py-2 text-base font-medium`} aria-current="page">Dashboard</Link>
+      <Link href="/user/account" className={`${ activated === "about"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Account</Link>
+      <Link href="/user/loan" className={`${ activated === "faqs"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Loans</Link>
+      <Link href="/user/savings" className={`${ activated === "services"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Savings</Link>
+      <Link href="" className={`${ activated === ""? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Buy Crypto <span className="text-[0.7rem] text-sky-500 p-1 border border-sky-500 rounded rounded-full">Coming Soon</span></Link>
+      {/* <Link href="/calculator" className={`${ activated === "calculator"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Loan Calculator</Link> */}
+      <Link href="/user/activity" className={`${ activated === "blog"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Activity</Link>
+      <Link href="" className={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Products</Link>
+      <Link href="" className={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Privacy & Security</Link>
+      <Link href="" className={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Settings</Link>
+      <Link href="" className="text-red-500 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium" onClick={()=>logout()}>Log out</Link>
      </div>
    </div>
 </nav>
@@ -153,7 +171,7 @@ useEffect(() => {
          <li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
                <IoLogOut className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900  text-xl" />
-               <span className="flex-1 ms-3 whitespace-nowrap text-red-500 dark:text-red-400">Log out</span>
+               <span className="flex-1 ms-3 whitespace-nowrap text-red-500 dark:text-red-400" onClick={()=>logout()}>Log out</span>
             </a>
          </li>
       </ul>
@@ -164,7 +182,7 @@ useEffect(() => {
   
    <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg  mt-14">
        <div className='text-black text-xl font-bold p-2 py-5 text-sky-900'>
-      Welcome, User
+      Welcome, {user.user? user.user.firstname:"User"}
    </div>
       <div className="grid lg:grid-cols-3 gap-4 mb-4 overflow-scroll ">
         {/* First Part */}
@@ -185,8 +203,8 @@ useEffect(() => {
          {/* Second Part */}
          <div className="flex items-center relative justify-start h-24 rounded-xl rounded bg-green-500 p-5 text-slate-100">
             <div className='flex flex-col '>
-                <div className='flex gap-2 text-xl lg:text-2xl font-semibold items-center justify-start'>
-                    No active loans
+                <div className='flex gap-2 text-4xl pt-5 lg:text-2xl font-semibold items-center justify-start pb-2 '>
+                <FaDollarSign className='text-sm' />{user.user?user.user.loan_amount:"10000"}
                 </div>
                 <div>
                     <span className='flex items-center text-sm'>  Get up to $50,000 in 5 minutes</span> 

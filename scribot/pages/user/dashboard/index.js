@@ -1,22 +1,43 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import Image from 'next/image';
 import axios from 'axios';
 import Link from 'next/link';
 import Head from 'next/head';
 import Sidebar from '@/components/navbar/sidebar';
 
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+
+import { AppContext } from '@/components/context';
+import { baseURL } from '@/pages/api';
+
 
 function Dashboard() {
-    const [coins, setCoins] = useState([]);
+    
+   const {user,setUser} = useContext(AppContext);
+    const router = useRouter();
+   
 
-const api = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false";
+
+
+const api = "http://localhost:8080/api/users/";
 
 useEffect(() => {
-  axios.get(api).then((response) => {
-    setCoins(response.data)
-  }).catch((error) => {
-    console.log(error)
-  })
+
+  const id = Cookies.get("__id");
+  const token = Cookies.get("token")
+    if(id && token){
+  axios.get(`${baseURL}/users/`+id,{headers:{Authorizatioin:"Bearer "+token}}).then(res => {
+
+  setUser(res.data)
+  
+  }).catch(err => console.log(err));
+    }
+    else{
+      router.replace("/auth/login")
+    }
+  
+  return
 }, []);
 
   return (
@@ -31,7 +52,7 @@ useEffect(() => {
 {/* header links */}
 <link rel="icon" href="./static/logo.ico" />
 </Head>
-<Sidebar />
+<Sidebar data={user.user} setData={setUser} />
         <main className=' flex justify-center items-center h-full w-full'>
        
         </main>
@@ -39,4 +60,4 @@ useEffect(() => {
   )
 }
 
-export default Dashboard;
+export default Dashboard

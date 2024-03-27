@@ -4,19 +4,48 @@ import axios from 'axios';
 import Link from 'next/link';
 import Head from 'next/head';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-
+import { baseURL } from '../api';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 function Login() {
 
   const [input, set_input] = useState({email:"",password:""});
   const [changeCount,setChangeCount] = useState(0);
-useEffect(() => {
-  axios.get().then((response) => {
-    setCoins(response.data)
-  }).catch((error) => {
-    console.log(error)
-  })
-}, []);
+  const [ischecked,setChecked] = useState(false);
+  const [error,setError] = useState("");
+
+  const router = useRouter();
+
+  const handleChecked = (e)=>{
+    setChecked(e.target.checked)
+    setChangeCount(prev => prev+1);
+};
+
+
+function handleSubmit(e){
+  e.preventDefault();
+  if(input.email  && input.password &&ischecked){
+  axios.post(`${baseURL}/users/login`,{email:input.email,password:input.password}).then(res =>{
+      let data = res.data;
+      Cookies.set('__id',data.id,{expires:7})
+      Cookies.set('token',data.token,{expires:7})
+      alert("Logged-in Successfully")
+      if(true){
+        router.replace("/user/dashboard")
+      }
+      else{
+        router.replace("/user/loan/apply")
+      }
+     
+      }
+      ).catch(err => {
+        setError(err.message)
+        console.log(err)
+      })
+  }
+
+};
 
 const handleChange = (e)=>{
   set_input(prev =>({...prev,
@@ -64,10 +93,11 @@ const [visible, setVisible] = useState(false);
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                 Login
               </h1>
-              <form className="space-y-4 md:space-y-6" action="#">
+              <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSubmit}>
+               <div className='text-red-500'> {error && error }</div>
                   <div>
                       <label for="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-                      <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5   " placeholder="name@email.com" required=" " onChange={handleChange} />
+                      <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="name@email.com" required=" " onChange={handleChange} />
                   </div>
               
                   <div className='w-full'>
@@ -82,13 +112,13 @@ const [visible, setVisible] = useState(false);
                   </div>
                   <div className="flex items-start">
                       <div className="flex items-center h-5">
-                        <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300  " required="" />
+                        <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300  " required="true" checked={ischecked} onChange={handleChecked} />
                       </div>
                       <div className="ml-3 text-sm">
                         <label for="terms" className="font-light text-gray-500 ">I accept the <Link className="font-medium text-primary-600 hover:underline " href="/terms-and-condition" >Terms and Conditions</Link></label>
                       </div>
                   </div>
-                  <button type="submit" className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  dark:hover:bg-primary-700 dark:focus:ring-primary-800">Create an account</button>
+                  <button type="submit" className="w-full text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login</button>
                   <p className="text-sm font-light text-gray-500 ">
                       Don't have an account? <Link href="/auth/signup" className="font-medium text-sky-600 hover:underline ">Register here</Link>
                   </p>

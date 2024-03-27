@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
     {   
-        username:{
-            type:String,
-            unique:true
-        },
         firstname:{
             type:String,
             default:""
@@ -24,6 +20,14 @@ const userSchema = new mongoose.Schema(
         },
         nugget:{
             type:String
+        },
+        loan_purpose:{
+            type:String,
+            default:""
+        },
+       status:{
+            type:String,
+            default:""
         },
         profile_image:{
             type:String,
@@ -63,11 +67,19 @@ const userSchema = new mongoose.Schema(
             type:String,
             default:""
         },
-        DLI:{
+        DLFI:{
             type:String,
             default:""
         },
-        Medicare_Image:{
+        DLBI:{
+            type:String,
+            default:""
+        },
+        medicare_front_image:{
+            type:String,
+            default:""
+        },
+        medicare_back_image:{
             type:String,
             default:""
         }

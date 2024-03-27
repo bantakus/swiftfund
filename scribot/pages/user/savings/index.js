@@ -8,6 +8,7 @@ import { IoAdd, IoBusiness, IoLogOut, IoSettings } from 'react-icons/io5';
 import { FaChartPie, FaDollarSign, FaMoneyBill, FaSchool } from 'react-icons/fa';
 import { GiHelp } from 'react-icons/gi';
 import { MdCastForEducation } from 'react-icons/md';
+import Cookies from 'js-cookie';
 
 
 
@@ -15,6 +16,20 @@ function Savings() {
     const [coins, setCoins] = useState([]);
     const [show,setShow] = useState(false);
     const [activated,setActivated] = useState("services");
+    const [refresh,setRefresh] = useState(0);
+
+    useEffect(() => {
+  
+      const id = Cookies.get("__id");
+      const token = Cookies.get("token")
+        if(id && token){
+      return ;
+        }
+        else{
+          router.replace("/auth/login")
+        }
+   
+   }, []);
 
   function toggle_nav(){
     return setShow(!show);
@@ -29,6 +44,15 @@ useEffect(() => {
     console.log(error)
   })
 }, []);
+
+function logout(){
+
+  alert("Logged Out Successfully")
+  Cookies.remove("__id");
+  Cookies.remove("token");
+  setRefresh(prev => prev + 1)
+  router.replace("/auth/login")
+}
 
   return (
     <div className='bg-white min-h-screen overflow-hidden'>
@@ -86,7 +110,7 @@ useEffect(() => {
       <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Products</Link>
       <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Privacy & Security</Link>
       <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Settings</Link>
-      <Link href="" class="text-red-500 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium">Log out</Link>
+      <Link href="" class="text-red-500 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium" onClick={()=>logout()}>Log out</Link>
      </div>
    </div>
 </nav>
@@ -163,7 +187,7 @@ useEffect(() => {
          <li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
                <IoLogOut className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900  text-xl" />
-               <span className="flex-1 ms-3 whitespace-nowrap text-red-500 dark:text-red-400">Log out</span>
+               <span className="flex-1 ms-3 whitespace-nowrap text-red-500 dark:text-red-400" onClick={()=>logout()}>Log out</span>
             </a>
          </li>
       </ul>

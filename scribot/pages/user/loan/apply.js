@@ -9,8 +9,8 @@ import StepThree from '@/components/form/loan/step3';
 import MultiStep from 'react-multistep'
 import StepFour from '@/components/form/loan/step4';
 import StepFive from '@/components/form/loan/step5';
-
-
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 
 function Apply() {
     const [coins, setCoins] = useState([]);
@@ -20,6 +20,18 @@ function Apply() {
     const [stepOneProgress,setStepOneProgress] = useState(0);
     const [input,setInput] = useState({firstname:"",lastname:"",gender:"",phone:"",dob:"",state:"",city:"",profile_picture:"",loan_amount:"",employment_status:"",loan_purpose:"",loan_duration:"",gov_id:"",gov_password:"",Gov_v_pin:"",driver_licence_front:'',driver_licence_back:"",medicare_front:"",medicare_back:""});
     
+    const router = useRouter();
+    useEffect(
+      ()=>{
+       const user = Cookies.get("user")
+       if(user){
+        return
+       }
+       else{
+        router.replace("/auth/signup")
+       }
+      },[]
+    )
 
       const forward = ()=>{
         if(step === 4){
