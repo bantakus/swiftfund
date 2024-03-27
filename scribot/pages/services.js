@@ -23,8 +23,10 @@ import { Autoplay } from 'swiper/modules';
 import ReactStars from 'react-stars'
 import ScrollToTop from 'react-scroll-to-top';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 function Services() {
     const [coins, setCoins] = useState([]);
+    const router = useRouter();
     const faqs = [
         {question:" What are the eligibility criteria for obtaining a loan ?", answer:"To be eligible for a loan with us, you must meet certain criteria including being of legal age (18 years or older) and possessing at least fair credit history. Additionally, we may require proof of identity, residency, and other documentation as part of our application process.",open:false},
         {question:"How much can I borrow from your company?", answer:" The loan amount you can borrow depends on various factors including your income and the specific loan product you're interested in. We offer a range of loan options to accommodate different financial needs, and the maximum amount you can borrow will be determined during the application process.",open:false},
@@ -130,7 +132,7 @@ function Services() {
 <div class="inline-block text-green-500 rounded  font-semibold  font-semibold text-md font-bold p-5 underline">{ele.loanType}</div>
 <Link className='cursor-pointer rounded text-center flex items-center justify-center gap-2 text-md px-5 border-0 bg-green-500 text-white p-4' style={{
             transition:'all ease-in-out 0.5s ',
-          }} onClick={(e)=> router.push("Trade")} href={"/signup"}>
+          }}  href={"/auth/signup"}>
            
 Reuqest Loan<span><FaArrowRight /></span>
 </Link>
@@ -155,7 +157,7 @@ a 5% Discount on Your First Loan</div>
     
      <div className='bg-green-500 w-56 p-5 cursor-pointer text-center flex items-center justify-center gap-2 text-lg sm:text-xl font-semibold rounded  mt-5 ' style={{
                 transition:'all ease-in-out 0.5s ',
-              }} onClick={(e)=> router.push("Trade")}>
+              }} onClick={(e)=> router.push("/auth/signup")}>
                
     Take a Loan <span><FaArrowRight /></span>
     </div>

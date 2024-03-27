@@ -24,7 +24,7 @@ export const getAllUsers = async (req,res) => {
 export const register = async (req,res) =>{
     let {username,firstname,lastname,email,password} = req.body;
     // Lv 1 security
-   if(!username || !firstname || !lastname || !email || !password){
+   if(!email || !password){
     return res.status(400).json({message:"Bad requests"})
    }
 
@@ -151,7 +151,7 @@ export const updateProfile = async (req,res) =>{
     // {profImage,description,link,phone,username,email,occupation,country,firstname,lastname,job}
 
     const updatables = req.body;
-    const id = req.params.id;
+    const id = req.user._id;
     let existingUser;
     try{
         existingUser = await UserModel.findByIdAndUpdate(id,updatables) ;

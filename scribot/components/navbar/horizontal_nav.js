@@ -61,14 +61,14 @@ const router = useRouter();
              <Link href="" class={`${ activated === "blog"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>Blog</Link>
              <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>Contact</Link>
              {/* <Link href="/calculator" class={`${ activated === "calculator"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"}  rounded-md px-3 py-2 text-sm font-medium`}>Loan Calculator</Link> */}
-             <Link href="/login" class={`text-gray-900 hover:bg-sky-100 hover:text-slate-900 rounded-md px-3 py-2 text-sm font-medium"`}>Login</Link>
+             <Link href="/auth/login" class={`text-gray-900 hover:bg-sky-100 hover:text-slate-900 rounded-md px-3 py-2 text-sm font-medium"`}>Login</Link>
            </div>
          </div>
        </div>
        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
          <div class="relative ml-3">
            <div className="flex gap-3 items-center justify-center">
-           <Link href="signup" class="bg-sky-500 text-white rounded-md px-8 py-3 text-sm font-medium" aria-current="page">SignUp</Link>
+           <Link href="/auth/signup" class="bg-sky-500 text-white rounded-md px-8 py-3 text-sm font-medium" aria-current="page">SignUp</Link>
            {/* <a href="#" class="text-slate-900 hover:bg-gray-100 rounded-md px-8 py-3 text-sm font-medium" aria-current="page">LogIn</a> */}
            </div>
          </div>
@@ -90,7 +90,7 @@ const router = useRouter();
       {/* <Link href="/calculator" class={`${ activated === "calculator"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Loan Calculator</Link> */}
       <Link href="" class={`${ activated === "blog"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block rounded-md px-3 py-2 text-base font-medium`}>Blog</Link>
       <Link href="" class={`${ activated === "contact"? "bg-sky-500 text-white":"text-gray-900 hover:bg-gray-100 hover:text-slate-900"} block  rounded-md px-3 py-2 text-base font-medium`}>Contact</Link>
-      <Link href="/login" class="text-gray-900 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium">Login</Link>
+      <Link href="/auth/login" class="text-gray-900 hover:bg-sky-100 hover:text-slate-900 block rounded-md px-3 py-2 text-base font-medium">Login</Link>
      </div>
    </div>
  </nav>

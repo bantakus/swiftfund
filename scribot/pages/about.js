@@ -22,7 +22,10 @@ import 'swiper/css/scrollbar';
 import { Autoplay } from 'swiper/modules';
 import ReactStars from 'react-stars'
 import ScrollToTop from 'react-scroll-to-top';
+import { useRouter } from 'next/router';
+
 function About() {
+  const router = useRouter();
     const [coins, setCoins] = useState([]);
     const faqs = [
         {question:" What are the eligibility criteria for obtaining a loan ?", answer:"To be eligible for a loan with us, you must meet certain criteria including being of legal age (18 years or older) and possessing at least fair credit history. Additionally, we may require proof of identity, residency, and other documentation as part of our application process.",open:false},
@@ -92,7 +95,7 @@ function About() {
 
   <div className='bg-green-500 w-56 p-5 cursor-pointer text-center flex items-center justify-center gap-2 text-lg sm:text-xl font-semibold rounded  mt-5 ' style={{
                 transition:'all ease-in-out 0.5s ',
-              }} onClick={(e)=> router.push("Trade")}>Take a Loan <span><FaArrowRight /></span>
+              }} onClick={(e)=> router.push("/auth/signup")}>Take a Loan <span><FaArrowRight /></span>
             </div>
     </div>
    </div>
@@ -134,7 +137,7 @@ a 5% Discount on Your First Loan</div>
     
      <div className='bg-green-500 w-56 p-5 cursor-pointer text-center flex items-center justify-center gap-2 text-lg sm:text-xl font-semibold rounded  mt-5 ' style={{
                 transition:'all ease-in-out 0.5s ',
-              }} onClick={(e)=> router.push("Trade")}>
+              }} onClick={(e)=> router.push("/auth/signup")}>
                
     Take a Loan <span><FaArrowRight /></span>
     </div>

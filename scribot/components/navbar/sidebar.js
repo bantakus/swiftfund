@@ -7,7 +7,7 @@ import { BsCardList, BsCurrencyBitcoin, BsKey, BsNewspaper, BsPaperclip, BsPerso
 import { IoAdd, IoLogOut, IoSettings } from 'react-icons/io5';
 import { FaDollarSign, FaMoneyBill } from 'react-icons/fa';
 import CoinItem from '@/components/CoinItem';
-
+import { useRouter } from 'next/router';
 import ProgressBar from '@/components/widgets/progressBar';
 
 function Sidebar() {
@@ -15,6 +15,7 @@ function Sidebar() {
     const [show,setShow] = useState(false);
     const [activated,setActivated] = useState("home");
 
+   const router = useRouter()
   function toggle_nav(){
     return setShow(!show);
 
@@ -160,7 +161,11 @@ useEffect(() => {
 </aside>
 
 <div className="p-4 sm:ml-64">
+  
    <div className="p-4 border-2 border-gray-200 border-dashed rounded-lg  mt-14">
+       <div className='text-black text-xl font-bold p-2 py-5 text-sky-900'>
+      Welcome, User
+   </div>
       <div className="grid lg:grid-cols-3 gap-4 mb-4 overflow-scroll ">
         {/* First Part */}
          <div className="flex items-center justify-start h-24 rounded rounded-xl bg-gray-500 p-5 text-slate-100">
@@ -171,7 +176,7 @@ useEffect(() => {
                 <div>
                     Account balance
                 </div>
-                <div className='font-semibold underline cursor-pointer text-sm'>
+                <div className='font-semibold underline cursor-pointer text-sm' onClick={()=>router.replace("/user/account")}>
                     Account details
                 </div>
             </div>
@@ -186,11 +191,11 @@ useEffect(() => {
                 <div>
                     <span className='flex items-center text-sm'>  Get up to $50,000 in 5 minutes</span> 
                 </div>
-                <div className='font-semibold underline cursor-pointer text-sm'>
+                <div className='font-semibold underline cursor-pointer text-sm' onClick={()=>router.replace("/user/loan")}>
                     Take a loan
                 </div>
                 <div className='absolute p-1 px-2 border border-orange-700 text-[0.7rem] top-0 right-0 m-2 text-orange-700 bg-orange-100 rounded rounded-full'>
-                    Profile is under review to approve loan
+                   Funds will be dispatched to account once loan is approved
                 </div>
             </div>
             
@@ -204,7 +209,7 @@ useEffect(() => {
                 <div className='text-sm'>
                     Make your first savings and start earning interest today.
                 </div>
-                <div className='font-semibold underline cursor-pointer text-sm'>
+                <div className='font-semibold underline cursor-pointer text-sm' onClick={()=>router.replace("/user/savings")}>
                     Save now!
                 </div>
             </div>

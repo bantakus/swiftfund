@@ -1,11 +1,19 @@
 import Head from 'next/head';
 import React, { useState } from 'react'
+import { useRouter } from 'next/router';
 
 function TermsandCond() {
 
+
+    const router = useRouter();
+
+    function back(){
+
+        return router.back();
+    }
    
   return (
-    <div className='flex flex-col min-h-screen text-slate-800 crimson bg-slate-100 text-lg container mx-auto p-5 space-y-2'>
+    <div className='flex flex-col min-h-screen text-slate-800 crimson bg-slate-100 text-lg  mx-auto p-5 space-y-2 items-center justify-center '>
          <Head>
 
 {/* title */}
@@ -68,6 +76,9 @@ function TermsandCond() {
 
 By using SwiftFund Fast Loans, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions. If you do not agree with any part of these terms, please do not use our services.
      </p>
+     <diV className="text-3xl font-semibold text-white bg-green-500 rounded rounded-lg p-5 hover:bg-green-600 text-center cursor-pointer my-3" onClick={back} >
+    I'm done reading
+     </diV>
     </div>
   )
 }
