@@ -124,7 +124,7 @@ function Index() {
 We do Not
 Require Extra Documents
 </div>
-<p>By eliminating unnecessary paperwork, we aim to provide a more accessible and customer-friendly lending service. Whether you're seeking a personal loan, business loan, or any other type of financing, you can trust us to make the process straightforward and convenient.</p>
+<p>By eliminating unnecessary paperwork, we aim to provide a more accessible and customer-friendly lending service. Whether you&apos;re seeking a personal loan, business loan, or any other type of financing, you can trust us to make the process straightforward and convenient.</p>
 
 </div>
 {/* items 2 */}
@@ -136,7 +136,7 @@ Require Extra Documents
 We Return
 Money for a Loan
 </div>
-<p>We prioritize customer satisfaction and strive to make the loan repayment process as smooth and stress-free as possible. We understand that life can be unpredictable, and we're here to support our clients every step of the way.</p>
+<p>We prioritize customer satisfaction and strive to make the loan repayment process as smooth and stress-free as possible. We understand that life can be unpredictable, and we&apos;re here to support our clients every step of the way.</p>
 
 </div>
 {/* items 3 */}
@@ -148,7 +148,7 @@ Money for a Loan
 We Reduce the Rate for
 Regular Customers
 </div>
-<p>By offering reduced interest rates for regular customers, we aim to reward loyalty, foster long-term relationships, and provide added value to our clients' borrowing experience.</p>
+<p>By offering reduced interest rates for regular customers, we aim to reward loyalty, foster long-term relationships, and provide added value to our clients&apos; borrowing experience.</p>
 
 </div>
 {/* items 4 */}
@@ -208,7 +208,7 @@ for Paying a Loan
 We do Not
 Require Extra Documents
 </div>
-<p>By eliminating unnecessary paperwork, we aim to provide a more accessible and customer-friendly lending service. Whether you're seeking a personal loan, business loan, or any other type of financing, you can trust us to make the process straightforward and convenient.</p>
+<p>By eliminating unnecessary paperwork, we aim to provide a more accessible and customer-friendly lending service. Whether you&apos;re seeking a personal loan, business loan, or any other type of financing, you can trust us to make the process straightforward and convenient.</p>
 
 </div>
 {/* items 2 */}
@@ -220,7 +220,7 @@ Require Extra Documents
 We Return
 Money for a Loan
 </div>
-<p>We prioritize customer satisfaction and strive to make the loan repayment process as smooth and stress-free as possible. We understand that life can be unpredictable, and we're here to support our clients every step of the way.</p>
+<p>We prioritize customer satisfaction and strive to make the loan repayment process as smooth and stress-free as possible. We understand that life can be unpredictable, and we&apos;re here to support our clients every step of the way.</p>
 
 </div>
 {/* items 3 */}
@@ -232,7 +232,7 @@ Money for a Loan
 We Give out Gifts Weekly
 and Pay off Interest
 </div>
-<p>We  are committed to going above and beyond to ensure the satisfaction and well-being of our clients. We understand that borrowing money is a significant decision, and we strive to make the experience as rewarding and positive as possible.</p>
+<p>We are committed to going above and beyond to ensure the satisfaction and well-being of our clients. We understand that borrowing money is a significant decision, and we strive to make the experience as rewarding and positive as possible.</p>
 
 </div>
 {/* items 4 */}
@@ -244,7 +244,7 @@ and Pay off Interest
 We Reduce the Rate for
 Regular Customers
 </div>
-<p>By offering reduced interest rates for regular customers, we aim to reward loyalty, foster long-term relationships, and provide added value to our clients' borrowing experience.</p>
+<p>By offering reduced interest rates for regular customers, we aim to reward loyalty, foster long-term relationships, and provide added value to our clients&apos; borrowing experience.</p>
 
 </div>
 
@@ -454,7 +454,7 @@ We comply with laws to protect your user rights
         <div className='flex flex-col w-full p-5 border border-gray-500 rounded rounded-lg text-slate-900 gap-2 mt-5 w-full bg-slate-200  h-64'>
           <div className='flex items-center gap-3  '>
             {/* Profile Picture */}
-            <Image height={40} width={40} src={ele.pic} className='rounded-full object-fit'/>
+            <Image height={40} width={40} src={ele.pic} alt='' className='rounded-full object-fit'/>
             <div>
            {ele.name}
             </div>

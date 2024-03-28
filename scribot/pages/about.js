@@ -88,9 +88,9 @@ function About() {
         <div className='flex flex-col items-start  mx-auto px-5 lg:px-36 py-12 pt-16 gap-5 lg:pt-36'>
             
         <div className='text-5xl lg:text-7xl font-semibold'>
-        We're Australia's <span className='text-green-500'>Fairest</span> <br /> Fast Credit Lending Company 
+        We&apos;re Australia&apos;s <span className='text-green-500'>Fairest</span> <br /> Fast Credit Lending Company 
         </div>
-        <p className='text-green-500 font-semibold'>Here, we have created the perfect solution. We take the stress out of being worried you'll be declined.
+        <p className='text-green-500 font-semibold'>Here, we have created the perfect solution. We take the stress out of being worried you&apos;ll be declined.
         <br />We believe everyone deserves a second chance, and have your best interests at heart. </p>
 
   <div className='bg-green-500 w-56 p-5 cursor-pointer text-center flex items-center justify-center gap-2 text-lg sm:text-xl font-semibold rounded  mt-5 ' style={{
@@ -108,7 +108,7 @@ function About() {
     <div className='text-slate-800 w-96'>
         {/* content title */}
     <div className='text-3xl font-semibold'>
-    Australia's <span className='text-green-500'>BEST </span>Fast Credit Lender
+    Australia&apos;s <span className='text-green-500'>BEST </span>Fast Credit Lender
       </div>
       <p>We provide deserving individuals with the opportunity for a fresh start.
 SwiftFund Loans is an Australian-owned and operated company, fully licensed and regulated by ASIC. Established in 2000, our mission is to offer financial solutions to customers who may not fit traditional lending criteria. The onset of the Global Financial Crisis (GFC) 
@@ -303,7 +303,7 @@ Honesty
         <div className='flex flex-col w-full p-5 border border-gray-500 rounded rounded-lg text-slate-900 gap-2 mt-5 w-full bg-slate-200  h-64'>
           <div className='flex items-center gap-3  '>
             {/* Profile Picture */}
-            <Image height={40} width={40} src={ele.pic} className='rounded-full object-fit'/>
+            <Image height={40} width={40} src={ele.pic} alt='' className='rounded-full object-fit'/>
             <div>
            {ele.name}
             </div>

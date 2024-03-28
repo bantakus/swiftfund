@@ -77,7 +77,7 @@ function TermsandCond() {
 By using SwiftFund Fast Loans, you acknowledge that you have read, understood, and agree to be bound by these terms and conditions. If you do not agree with any part of these terms, please do not use our services.
      </p>
      <diV className="text-3xl font-semibold text-white bg-green-500 rounded rounded-lg p-5 hover:bg-green-600 text-center cursor-pointer my-3" onClick={back} >
-    I'm done reading
+    I&apos;m done reading
      </diV>
     </div>
   )

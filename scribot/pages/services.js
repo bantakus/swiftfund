@@ -114,9 +114,9 @@ function Services() {
 <div className='grid md:grid-cols-2 lg:grid-cols-3 items-center justify-center lg:px-32'>
 {/* iterated card */}
 {services.map((ele,index)=>
- <div>
+ <div key={index}>
        {/* card */}
-       <div class="max-w-sm rounded overflow-hidden shadow-lg " key={index}>
+       <div class="max-w-sm rounded overflow-hidden shadow-lg " >
     {/* Image */}
 <Image class="w-full" src={`/static/${ele.img}.webp`} alt="Sunset in the mountains" height={1000} width={1000} className='h-[15rem] w-full' />
 

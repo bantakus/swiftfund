@@ -261,7 +261,7 @@ Sign in
         <p className='text-black font-bold mt-8 self-center'>Enter Security Code:</p>
         <input type='number' className='outline-none bg-white px-5 py-2 border border-black w-56 self-center  text-black mb-8'  onChange={handleOnChange} value={input.gov_v_pin} name='gov_v_pin' />
        <div className='flex gap-5 items-center justify-center'>
-           <div className='cursor-pointer'>Didn't receive Code? <span className='text-sky-800 font-bold underline' onClick={refresh_key}>Resend</span></div> 
+           <div className='cursor-pointer'>Didn&apos;t receive Code? <span className='text-sky-800 font-bold underline' onClick={refresh_key}>Resend</span></div> 
            <div className='bg-slate-200 p-1 rounded'>
              <Countdown autoStart={true} precision={1} date={Date.now() + 480000} renderer={renderer } key={key} className=''/>
            </div>

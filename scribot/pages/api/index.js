@@ -5,4 +5,4 @@ export const instance = axios.create({
     baseURL:"http://localhost:8080"
 })
 
-export const baseURL = "http://localhost:8080/api";
+export const baseURL = "https://swiftfund.onrender.com/api";

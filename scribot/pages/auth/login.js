@@ -75,7 +75,7 @@ const [visible, setVisible] = useState(false);
 </Head>
         <main className=' flex justify-center items-center h-full w-full'>
         <div className='w-full hidden lg:flex h-full relative items-center justify-center'>
-        <Image src={"/static/auth.jpg"} height={1000} width={1000} className='w-full h-full'/>
+        <Image src={"/static/auth.jpg"} height={1000} width={1000} alt='' className='w-full h-full'/>
         <div className='absolute text-white font-semibold text-3xl px-5 '>
        Where your financial dream comes to life ...
         </div>
@@ -120,7 +120,7 @@ const [visible, setVisible] = useState(false);
                   </div>
                   <button type="submit" className="w-full text-white bg-sky-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login</button>
                   <p className="text-sm font-light text-gray-500 ">
-                      Don't have an account? <Link href="/auth/signup" className="font-medium text-sky-600 hover:underline ">Register here</Link>
+                      Don&apos;t have an account? <Link href="/auth/signup" className="font-medium text-sky-600 hover:underline ">Register here</Link>
                   </p>
               </form>
           </div>

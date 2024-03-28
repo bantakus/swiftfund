@@ -56,7 +56,7 @@ function StepOne({forward,input,setInput}) {
 <div className='text-red-500  bg-white rounded rounded-lg  flex flex-col items-center justify-center w-96  py-16'>
   {/* INTRO text */}
         <div className='text-2xl font-semibold text-sky-700 py-2'>
-        Let's Get to Know You
+        Let&apos;s Get to Know You
         </div>
 
         {/* subtext */}

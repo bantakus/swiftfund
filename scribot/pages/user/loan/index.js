@@ -126,16 +126,16 @@ function logout(){
             </Link>
          </li>
          <li>
-            <a href="/user/loan" className="flex items-center p-2  p-2 text-white rounded-lg  hover:bg-gray-700 bg-sky-500 group">
+            <Link href="/user/loan" className="flex items-center p-2  p-2 text-white rounded-lg  hover:bg-gray-700 bg-sky-500 group">
             <FaMoneyBill className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900  text-xl" />
                <span className="flex-1 ms-3 whitespace-nowrap">Loans</span>
-            </a>
+            </Link>
          </li>
          <li>
-            <a href="/user/savings" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
+            <Link href="/user/savings" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
             <BsWallet className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900  text-xl" />
                <span className="flex-1 ms-3 whitespace-nowrap">Savings</span>
-            </a>
+            </Link>
          </li>
          <li>
             <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gray-100  group">
