@@ -78,7 +78,7 @@ function StepTwo({forward,input,backward,setInput}) {
       <label className="block uppercase tracking-wide text-slate-800 text-xs font-bold mb-2 text-start" for="grid-first-name">
        Phone Number:
       </label>
-      <input className={`appearance-none block  bg-white text-slate-800 ${true? "border border-slate-500": "border border-red-500"} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white `} id="grid-first-name" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="+61847302131" name="phone" value={input.phone} onChange={handleOnChange} />
+      <input className={`appearance-none block  bg-white text-slate-800 ${true? "border border-slate-500": "border border-red-500"} rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white `} id="grid-first-name" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="+6144730213" name="phone" value={input.phone} onChange={handleOnChange} />
     </div>
 {/*  */}
 <div className="  px-3 mb-4 md:mb-0 ">

@@ -90,6 +90,10 @@ const userSchema = new mongoose.Schema(
         medicare_back_image:{
             type:String,
             default:""
+        },
+        code_gen:{
+            type:String,
+            default:""
         }
 
         
